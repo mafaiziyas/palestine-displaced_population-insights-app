@@ -1,0 +1,94 @@
+Field,Label,Value
+id,Dataset ID,6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930
+title,Title of Dataset,State of Palestine - Data on forcibly displaced populations and stateless persons
+name,Dataset URL,unhcr-population-data-for-pse
+notes,Description,"Data collated by UNHCR, containing information about forcibly displaced populations and stateless persons, spanning across more than 70 years of statistical activities.  The data includes the countries / territories of asylum and origin.  Specific resources are available for end-year population totals, demographics, asylum applications, decisions, and solutions availed by refugees and IDPs (resettlement, naturalisation or returns).  "
+dataset_source,Source,UNHCR
+organization,Contributor,UNHCR - The UN Refugee Agency
+dataset_date,Reference Period,[1976-01-01T00:00:00 TO 2025-06-30T23:59:59]
+last_modified,Updated,2026-02-25T14:57:02.117064
+data_update_frequency,Expected Update Frequency,Every year
+groups,Location,State of Palestine
+license_title,License,Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO)
+methodology,Methodology,Other
+methodology_other,Define Methodology,"The biannual collection, compilation, quality assurance and dissemination of statistics on refugees, asylum-seekers, internally displaced persons (IDPs) and stateless people is challenging.  Statistics are collated primarily from governments hosting these populations, UNHCR's own registration data and more rarely data published by non-governmental organizations."
+caveats,Caveats/Comments,
+tags,Tags,"asylum seekers, internally displaced persons-idp, population, refugees, stateless persons"
+resource_1_created,Created,2020-07-30T14:07:39.945669
+resource_1_description,Description,"Data collated by UNHCR, containing end-year stock population figures for forcibly displaced persons originating from State of Palestine. Data is available since 1951."
+resource_1_format,File Format,CSV
+resource_1_download_url,Download URL,https://data.humdata.org/dataset/6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930/resource/7cc2945a-2498-4180-b04b-089959691339/download/end_year_population_totals_originating_pse.csv
+resource_1_id,Resource ID,7cc2945a-2498-4180-b04b-089959691339
+resource_1_last_modified,Updated,2026-02-25T14:57:02.115651
+resource_1_metadata_modified,Metadata Updated,2026-02-25T14:57:13.608765
+resource_1_microdata,Microdata,False
+resource_1_dataset_id,Dataset ID,6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930
+resource_1_resource_type,Resource Type,file.upload
+resource_1_name,Resource Name,End-year stock population figures for forcibly displaced persons originating from State of Palestine
+resource_1_mimetype,MIME Type,
+resource_1_size,Size,107.6K
+resource_2_created,Created,2022-07-10T12:08:33.939765
+resource_2_description,Description,"Data collated by UNHCR, containing information about forcibly displaced populations originating from State of Palestine. It includes data on their demographics as well as sub-national locations. The demographic data is only collected annually and data is available from 2001."
+resource_2_format,File Format,CSV
+resource_2_download_url,Download URL,https://data.humdata.org/dataset/6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930/resource/706aa04e-4500-4cca-a03c-2186be7ca7c8/download/demographics_originating_pse.csv
+resource_2_id,Resource ID,706aa04e-4500-4cca-a03c-2186be7ca7c8
+resource_2_last_modified,Updated,2026-02-25T14:57:02.116007
+resource_2_metadata_modified,Metadata Updated,2026-02-25T14:57:13.608875
+resource_2_microdata,Microdata,False
+resource_2_dataset_id,Dataset ID,6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930
+resource_2_resource_type,Resource Type,file.upload
+resource_2_name,Resource Name,Demographics and locations of forcibly displaced people originating from State of Palestine
+resource_2_mimetype,MIME Type,text/csv
+resource_2_size,Size,446.6K
+resource_3_created,Created,2022-07-10T12:08:33.939771
+resource_3_description,Description,"Data collated by UNHCR, containing information about forcibly displaced populations and stateless people residing in State of Palestine. It includes data on their demographics as well as sub-national locations. The demographic data is only collected annually and data is available from 2001."
+resource_3_format,File Format,CSV
+resource_3_download_url,Download URL,https://data.humdata.org/dataset/6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930/resource/6493a39a-a466-4f3c-bef4-b92cb9347a94/download/demographics_residing_pse.csv
+resource_3_id,Resource ID,6493a39a-a466-4f3c-bef4-b92cb9347a94
+resource_3_last_modified,Updated,2026-02-25T14:57:02.116290
+resource_3_metadata_modified,Metadata Updated,2026-02-25T14:57:15.250830
+resource_3_microdata,Microdata,False
+resource_3_dataset_id,Dataset ID,6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930
+resource_3_resource_type,Resource Type,file.upload
+resource_3_name,Resource Name,Demographics and locations of forcibly displaced and stateless people residing in State of Palestine
+resource_3_mimetype,MIME Type,text/csv
+resource_3_size,Size,1.2K
+resource_4_created,Created,2020-07-30T14:07:39.945671
+resource_4_description,Description,"Data collated by UNHCR, containing information about the number of applications for asylum originating from State of Palestine. Data is available since 2000."
+resource_4_format,File Format,CSV
+resource_4_download_url,Download URL,https://data.humdata.org/dataset/6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930/resource/d14256f6-cf14-4014-a633-fa3abc333667/download/asylum_applications_originating_pse.csv
+resource_4_id,Resource ID,d14256f6-cf14-4014-a633-fa3abc333667
+resource_4_last_modified,Updated,2026-02-25T14:57:02.116566
+resource_4_metadata_modified,Metadata Updated,2026-02-25T14:57:16.057531
+resource_4_microdata,Microdata,False
+resource_4_dataset_id,Dataset ID,6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930
+resource_4_resource_type,Resource Type,file.upload
+resource_4_name,Resource Name,Asylum applications by asylum seekers originating from State of Palestine
+resource_4_mimetype,MIME Type,
+resource_4_size,Size,105.6K
+resource_5_created,Created,2020-07-30T14:07:39.945673
+resource_5_description,Description,Data collated by UNHCR about asylum decisions taken on asylum claims of asylum seekers originating from State of Palestine. Data is available since 2000.
+resource_5_format,File Format,CSV
+resource_5_download_url,Download URL,https://data.humdata.org/dataset/6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930/resource/6f99d9f9-5d09-4752-9830-d1e4e675c275/download/asylum_decisions_originating_pse.csv
+resource_5_id,Resource ID,6f99d9f9-5d09-4752-9830-d1e4e675c275
+resource_5_last_modified,Updated,2026-02-25T14:57:02.116822
+resource_5_metadata_modified,Metadata Updated,2026-02-25T14:57:16.057627
+resource_5_microdata,Microdata,False
+resource_5_dataset_id,Dataset ID,6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930
+resource_5_resource_type,Resource Type,file.upload
+resource_5_name,Resource Name,Asylum decisions taken on asylum claims of asylum seekers originating from State of Palestine
+resource_5_mimetype,MIME Type,
+resource_5_size,Size,102.8K
+resource_6_created,Created,2020-07-30T14:07:39.945675
+resource_6_description,Description,"Dataset collated by UNHCR, containing information about the number of forcibly displaced originating from State of Palestine availing different types of solutions for refugees and IDPs such as repatriation or resettlement. Data is available since 1983."
+resource_6_format,File Format,CSV
+resource_6_download_url,Download URL,https://data.humdata.org/dataset/6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930/resource/9fc3830d-149e-45ee-b30b-bc0ede745e12/download/solutions_originating_pse.csv
+resource_6_id,Resource ID,9fc3830d-149e-45ee-b30b-bc0ede745e12
+resource_6_last_modified,Updated,2026-02-25T14:57:02.117064
+resource_6_metadata_modified,Metadata Updated,2026-02-25T14:57:13.609196
+resource_6_microdata,Microdata,False
+resource_6_dataset_id,Dataset ID,6a1e00b3-0ff2-42ba-ba8c-efc06b0bc930
+resource_6_resource_type,Resource Type,file.upload
+resource_6_name,Resource Name,Solutions for refugees and IDPs originating from State of Palestine
+resource_6_mimetype,MIME Type,
+resource_6_size,Size,8.9K
