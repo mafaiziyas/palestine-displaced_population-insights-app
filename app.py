@@ -20,3 +20,5 @@ st.subheader(f"Top 10 Countries of Asylum in {selected_year}")
 top_10 = filtered_df.nlargest(10, 'Refugees')
 fig = px.bar(top_10, x='Country of Asylum Name', y='Refugees', color='Refugees')
 st.plotly_chart(fig)
+
+#
