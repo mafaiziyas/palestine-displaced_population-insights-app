@@ -6,7 +6,7 @@ import plotly.express as px
 st.title("Palestine Displacement Data Dashboard (1976-2025)")
 
 # Loading csv data
-url = "https://github.com/mafaiziyas/palestine-displaced_population-insights-app/raw/refs/heads/main/palestine_displacement_1976_2025.csvv"
+url = "https://github.com/mafaiziyas/palestine-displaced_population-insights-app/raw/refs/heads/main/palestine_displacement_1976_2025.csv"
 df = pd.read_csv(url)
 
 # Sidebar filter for Year
