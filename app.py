@@ -38,15 +38,22 @@ st.divider()
 
 #choropleth
 st.subheader(f"Global Distribution of Refugees in {selected_year}")
+
 fig_map = px.choropleth(
     filtered_df, 
     locations="Country of Asylum Code", 
     color="Refugees", 
-    hover_name="Country of Asylum Name",
-    color_continuous_scale="Reds",
+    hover_name="Country of Asylum Name", #name to appear upon hovering
+    hover_data={
+        "Country of Asylum Code": False, 
+        "Refugees": ":,",               
+        "Asylum seekers": ":,"          
+    },
+    color_continuous_scale="RdBu_r",# Red for high, blue for low
     projection="natural earth",
-    title=f"Worldwide Refugee Distribution ({selected_year})"
+    title=f"Refugee Hotspots ({selected_year})"
 )
+fig_map.update_traces(hovertemplate="<b>%{hovertext}</b><br>Refugees: %{z:,.0f}")
 st.plotly_chart(fig_map, use_container_width=True)
 st.divider()
 
@@ -64,19 +71,27 @@ fig_grouped = px.bar(
 st.plotly_chart(fig_grouped, use_container_width=True)
 st.divider()
 
-#Pie chart
+# Pie chart
 st.subheader(f"Population Type Breakdown ({selected_year})")
 pie_data = {
-    'Category': ['Refugees', 'Asylum Seekers', 'Stateless', 'IDPs'],
+    'Category': ['Refugees', 'Asylum Seekers', 'Others of Concern'],
     'Count': [
         filtered_df['Refugees'].sum(),
         filtered_df['Asylum seekers'].sum(),
-        filtered_df['Stateless Persons'].sum(),
-        filtered_df['Internally displaced persons'].sum()
+        filtered_df['Others of concern to UNHCR'].sum()
     ]
 }
-fig_pie = px.pie(pie_data, values='Count', names='Category', hole=0.4)
+fig_pie = px.pie(
+    pie_data, 
+    values='Count', 
+    names='Category', 
+    hole=0.4,
+    color_discrete_sequence=px.colors.sequential.RdBu 
+)
+#Adding lables and % for clarity
+fig_pie.update_traces(textposition='inside', textinfo='percent+label')
 st.plotly_chart(fig_pie, use_container_width=True)
+st.divider()
 
 st.caption("Data Source: UNHCR Population Statistics Database")
 
