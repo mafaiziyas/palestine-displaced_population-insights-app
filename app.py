@@ -14,6 +14,15 @@ year_list = sorted(df['Year'].unique(), reverse=True)
 selected_year = st.sidebar.selectbox("Select a Year", year_list)
 # Filter the data based on the selection
 filtered_df = df[df['Year'] == selected_year]
+#Additional functional requirement: download button
+st.sidebar.divider()
+st.sidebar.subheader("Export Data")
+st.sidebar.download_button(
+    label="📥 Download Year Data",
+    data=filtered_df.to_csv(index=False),
+    file_name=f"palestine_displacement_{selected_year}.csv",
+    mime="text/csv",
+)
 
 #Top metrics
 df.columns = df.columns.str.strip()
@@ -83,7 +92,7 @@ if search_country:
     c1.write(f"**Refugees:** {int(country_data['Refugees'].sum()):,}")
     c2.write(f"**Asylum Seekers:** {int(country_data['Asylum seekers'].sum()):,}")
     c3.write(f"**Others of Concern:** {int(country_data['Others of concern to UNHCR'].sum()):,}")
-  st.divider()
+st.divider()
 
 # Pie chart
 st.subheader(f"Population Type Breakdown ({selected_year})")
