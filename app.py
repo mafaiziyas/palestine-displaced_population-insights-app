@@ -93,5 +93,6 @@ fig_pie.update_traces(textposition='inside', textinfo='percent+label')
 st.plotly_chart(fig_pie, use_container_width=True)
 st.divider()
 
+
 st.caption("Data Source: UNHCR Population Statistics Database")
 
