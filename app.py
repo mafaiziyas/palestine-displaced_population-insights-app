@@ -2,50 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(page_title="UNHCR Palestine Dashboard", layout="wide")
-
-# Back ground UI change 
-st.markdown("""
-    <style>
-    /* Changing the main background color */
-    .stApp {
-        background-color: #f5f7f9;
-    }
-    
-    /* Styling the sidebar background */
-    [data-testid="stSidebar"] {
-        background-color: #ffffff;
-        border-right: 1px solid #e0e0e0;
-    }
-    
-    /* Title styling' */
-    h1, h2, h3 {
-        color: #1a365d; /* Dark Blue */
-        font-family: 'Helvetica Neue', sans-serif;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-#UI
-st.markdown("""
-    <style>
-    [data-testid="stMetricValue"] { font-size: 26px; color: #2e7d32; }
-    .stMetric { background-color: #f8f9fa; padding: 15px; border-radius: 10px; border: 1px solid #e0e0e0; }
-    </style>
-    """, unsafe_allow_html=True)
-
 # Title of the app
 st.title("Palestine Displacement Data Dashboard (1976-2025)")
 
-#UI
-with st.expander("ℹ️ Data Methodology & Definitions"):
-    st.write("""
-    This dashboard visualizes trends for displaced populations originating from the State of Palestine.
-    - **Refugees:** Individuals recognized under the UNHCR mandate.
-    - **Asylum Seekers:** Individuals awaiting status determination.
-    - **Others of Concern:** Groups requiring protection who don't fit strict refugee definitions.
-    """)
-    
 # Loading csv data
 url = "https://github.com/mafaiziyas/palestine-displaced_population-insights-app/raw/refs/heads/main/palestine_displacement_1976_2025.csv"
 df = pd.read_csv(url)
@@ -95,7 +54,7 @@ fig_map = px.choropleth(
     hover_name="Country of Asylum Name", 
     hover_data={
         "Country of Asylum Code": False, 
-        "Refugees": ":,",                 
+        "Refugees": ":,",               
         "Asylum seekers": ":,"          
     },
     #Green: make high values dark green and low values lighter/white
@@ -122,21 +81,17 @@ fig_grouped = px.bar(
     labels={'value': 'Number of People', 'variable': 'Status'}
 )
 st.plotly_chart(fig_grouped, use_container_width=True)
-st.divider()
-
 st.subheader("Search Specific Country Data")
 search_country = st.selectbox("Select a country to view its specific records:", 
                              options=[""] + sorted(filtered_df['Country of Asylum Name'].unique().tolist()))
 
 if search_country:
     country_data = filtered_df[filtered_df['Country of Asylum Name'] == search_country]
-    #UI update
-    st.info(f"Summary for **{search_country}** in {selected_year}")
-    
-    sc1, sc2, sc3 = st.columns(3)
-    sc1.metric("Refugees", f"{int(country_data['Refugees'].sum()):,}")
-    sc2.metric("Asylum Seekers", f"{int(country_data['Asylum seekers'].sum()):,}")
-    sc3.metric("Others of Concern", f"{int(country_data['Others of concern to UNHCR'].sum()):,}")
+    st.write(f"In {selected_year}, **{search_country}** hosted:")
+    c1, c2, c3 = st.columns(3)
+    c1.write(f"**Refugees:** {int(country_data['Refugees'].sum()):,}")
+    c2.write(f"**Asylum Seekers:** {int(country_data['Asylum seekers'].sum()):,}")
+    c3.write(f"**Others of Concern:** {int(country_data['Others of concern to UNHCR'].sum()):,}")
 st.divider()
 
 # Pie chart
@@ -162,3 +117,4 @@ st.plotly_chart(fig_pie, use_container_width=True)
 st.divider()
 
 st.caption("Data Source: UNHCR Population Statistics Database")
+
