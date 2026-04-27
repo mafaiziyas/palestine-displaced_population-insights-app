@@ -7,7 +7,7 @@ st.markdown("""
     <style>
     /* Main Area Background: Medium Grey */
     .stApp {
-        background-color: #64748b; /* Slate grey */
+        background-color: #475569; /* Slate grey */
         font-family: 'Inter', sans-serif;
     }
     
@@ -67,7 +67,6 @@ def apply_theme(fig):
     fig.update_yaxes(gridcolor='#334155', zeroline=False)
     return fig
     
-
 # Title of the app
 st.title("Palestine Displacement Data Dashboard (1976-2025)")
 
