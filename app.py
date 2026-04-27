@@ -36,6 +36,20 @@ fig_line.add_scatter(x=current_year_val['Year'], y=current_year_val['Refugees'],
 st.plotly_chart(fig_line, use_container_width=True)
 st.divider()
 
+#choropleth
+st.subheader(f"Global Distribution of Refugees in {selected_year}")
+fig_map = px.choropleth(
+    filtered_df, 
+    locations="Country of Asylum Code", 
+    color="Refugees", 
+    hover_name="Country of Asylum Name",
+    color_continuous_scale="Reds",
+    projection="natural earth",
+    title=f"Worldwide Refugee Distribution ({selected_year})"
+)
+st.plotly_chart(fig_map, use_container_width=True)
+st.divider()
+
 #Bar chart
 st.subheader(f"Breakdown of Population Types by Country ({selected_year})")
 top_5_countries = filtered_df.nlargest(5, 'Refugees')
