@@ -2,66 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(page_title="UNHCR Palestine Dashboard", layout="wide")
-
-# Custom CSS for UI Enhancement
-st.markdown("""
-    <style>
-    /* Background and global font */
-    .stApp {
-        background-color: #f1f5f9;
-        font-family: 'Inter', sans-serif;
-    }
-    
-    /* Card Styling for Metrics and Charts */
-    div[data-testid="stMetric"], .stPlotlyChart {
-        background-color: #1e293b !important; 
-        padding: 20px !important;
-        border-radius: 20px !important;
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-        border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    /* Metric text colors */
-    [data-testid="stMetricValue"] { 
-        color: #10b981 !important; 
-        font-weight: 800 !important;
-        font-size: 32px !important;
-    }
-    [data-testid="stMetricLabel"] {
-        color: #94a3b8 !important;
-        font-weight: 600 !important;
-        font-size: 16px !important;
-    }
-
-    /* Headers */
-    h1, h2, h3 {
-        color: #0f172a !important;
-        font-weight: 800 !important;
-    }
-
-    /* Sidebar adjustments */
-    [data-testid="stSidebar"] {
-        background-color: #ffffff;
-        border-right: 1px solid #e2e8f0;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-# Helper to sync Plotly colors with the UI cards
-def apply_theme(fig):
-    fig.update_layout(
-        paper_bgcolor='rgba(0,0,0,0)', 
-        plot_bgcolor='rgba(0,0,0,0)',
-        font_color="#f8fafc",
-        margin=dict(l=15, r=15, t=50, b=15),
-        title_font_color="#f8fafc",
-        legend_font_color="#f8fafc"
-    )
-    fig.update_xaxes(gridcolor='#334155', zeroline=False)
-    fig.update_yaxes(gridcolor='#334155', zeroline=False)
-    return fig
-    
 # Title of the app
 st.title("Palestine Displacement Data Dashboard (1976-2025)")
 
@@ -177,3 +117,4 @@ st.plotly_chart(fig_pie, use_container_width=True)
 st.divider()
 
 st.caption("Data Source: UNHCR Population Statistics Database")
+
