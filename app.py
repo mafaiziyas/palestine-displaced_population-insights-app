@@ -7,7 +7,7 @@ st.markdown("""
     <style>
     /* Main Area Background: Medium Grey */
     .stApp {
-        background-color: #475569; /* Slate grey */
+        background-color: #64748b; /* Slate grey */
         font-family: 'Inter', sans-serif;
     }
     
