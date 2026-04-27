@@ -98,6 +98,28 @@ col2.metric("Asylum Seekers", f"{filtered_df['Asylum seekers'].sum():,}")
 col3.metric("Stateless Persons", f"{filtered_df['Stateless Persons'].sum():,}")
 st.divider()
 
+# Pie chart
+st.subheader(f"Population Type Breakdown ({selected_year})")
+pie_data = {
+    'Category': ['Refugees', 'Asylum Seekers', 'Others of Concern'],
+    'Count': [
+        filtered_df['Refugees'].sum(),
+        filtered_df['Asylum seekers'].sum(),
+        filtered_df['Others of concern to UNHCR'].sum()
+    ]
+}
+fig_pie = px.pie(
+    pie_data, 
+    values='Count', 
+    names='Category', 
+    hole=0.4,
+    color_discrete_sequence=px.colors.sequential.RdBu 
+)
+#Adding lables and % for clarity
+fig_pie.update_traces(textposition='inside', textinfo='percent+label')
+st.plotly_chart(fig_pie, use_container_width=True)
+st.divider()
+
 #Trend line 
 st.subheader("Historical Displacement Trend (1976-2025)")
 trend_data = df.groupby('Year')['Refugees'].sum().reset_index()
@@ -157,28 +179,6 @@ if search_country:
     c1.write(f"**Refugees:** {int(country_data['Refugees'].sum()):,}")
     c2.write(f"**Asylum Seekers:** {int(country_data['Asylum seekers'].sum()):,}")
     c3.write(f"**Others of Concern:** {int(country_data['Others of concern to UNHCR'].sum()):,}")
-st.divider()
-
-# Pie chart
-st.subheader(f"Population Type Breakdown ({selected_year})")
-pie_data = {
-    'Category': ['Refugees', 'Asylum Seekers', 'Others of Concern'],
-    'Count': [
-        filtered_df['Refugees'].sum(),
-        filtered_df['Asylum seekers'].sum(),
-        filtered_df['Others of concern to UNHCR'].sum()
-    ]
-}
-fig_pie = px.pie(
-    pie_data, 
-    values='Count', 
-    names='Category', 
-    hole=0.4,
-    color_discrete_sequence=px.colors.sequential.RdBu 
-)
-#Adding lables and % for clarity
-fig_pie.update_traces(textposition='inside', textinfo='percent+label')
-st.plotly_chart(fig_pie, use_container_width=True)
 st.divider()
 
 st.caption("Data Source: UNHCR Population Statistics Database")
