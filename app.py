@@ -4,48 +4,55 @@ import plotly.express as px
 
 st.set_page_config(page_title="UNHCR Palestine Dashboard", layout="wide")
 
-# Global UI Customization: Pale Grey Background & Floating Dark Graph Cards
+# Global UI Customization: Deeper Background & High-Contrast Text
 st.markdown("""
     <style>
-    /* Main Background: Pale Grey */
+    /* Darker Background: Slate Grey for better contrast */
     .stApp {
-        background-color: #e5e7eb;
+        background-color: #cbd5e1;
     }
     
-    /* Sidebar styling */
+    /* Sidebar styling with depth */
     [data-testid="stSidebar"] {
         background-color: #ffffff;
-        box-shadow: 2px 0px 10px rgba(0,0,0,0.1);
+        box-shadow: 2px 0px 15px rgba(0,0,0,0.15);
     }
     
-    /* Prominent Headings */
+    /* High-Contrast Typography: Forcing all text to be very dark */
+    h1, h2, h3, p, span, label {
+        color: #0f172a !important; /* Deep Navy/Charcoal */
+        font-family: 'Helvetica Neue', sans-serif;
+    }
+
     h1 {
-        color: #111827 !important; 
-        font-size: 48px !important;
+        font-size: 52px !important;
+        font-weight: 900 !important;
+    }
+
+    /* Floating Graph Cards: Dark Charcoal with "Lifting" Shadow */
+    [data-testid="stMetric"], .stPlotlyChart {
+        background-color: #1e293b !important; 
+        padding: 25px !important;
+        border-radius: 24px !important; /* Extra rounded for modern feel */
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3) !important; /* Stronger lift effect */
+        border: 1px solid rgba(255,255,255,0.05) !important;
+    }
+
+    /* Metric text colors: Neon for stats, White for labels */
+    [data-testid="stMetricValue"] { 
+        font-size: 40px !important; 
+        color: #22c55e !important; /* Bright Green */
         font-weight: 800 !important;
     }
-    h2, h3 {
-        color: #1f2937 !important; 
-        font-size: 28px !important;
-    }
-
-    /* Floating Metric & Graph Containers: Dark Grey Background with lifting shadow */
-    [data-testid="stMetric"], .stPlotlyChart {
-        background-color: #1f2937 !important; /* Dark Grey */
-        padding: 20px !important;
-        border-radius: 20px !important; /* Rounded corners */
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important; /* Lifting shadow */
-        border: 1px solid rgba(255,255,255,0.1) !important;
-    }
-
-    /* Metric text colors for dark background */
-    [data-testid="stMetricValue"] { 
-        font-size: 36px !important; 
-        color: #4ade80 !important; /* Neon Green for visibility */
-    }
     [data-testid="stMetricLabel"] {
-        color: #f3f4f6 !important;
-        font-weight: 600 !important;
+        color: #f8fafc !important; /* Off-white for labels inside dark boxes */
+        font-weight: 700 !important;
+        font-size: 18px !important;
+    }
+
+    /* Sidebar text visibility fix */
+    [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] p {
+        color: #1e293b !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -89,14 +96,18 @@ col2.metric("Asylum Seekers", f"{filtered_df['Asylum seekers'].sum():,}")
 col3.metric("Stateless Persons", f"{filtered_df['Stateless Persons'].sum():,}")
 st.divider()
 
-# Plotly styling helper: Ensures graph text is visible against dark background
+# Plotly styling helper
 def style_graph(fig):
     fig.update_layout(
         paper_bgcolor='rgba(0,0,0,0)', 
         plot_bgcolor='rgba(0,0,0,0)',
-        font_color="#f3f4f6",
-        margin=dict(l=20, r=20, t=40, b=20)
+        font_color="#f8fafc", # Off-white for chart text against dark cards
+        margin=dict(l=20, r=20, t=50, b=20),
+        title_font_size=24,
+        title_font_color="#f8fafc"
     )
+    fig.update_xaxes(gridcolor='#334155')
+    fig.update_yaxes(gridcolor='#334155')
     return fig
 
 # Trend line 
@@ -105,7 +116,7 @@ trend_data = df.groupby('Year')['Refugees'].sum().reset_index()
 fig_line = px.line(trend_data, x='Year', y='Refugees', markers=True, title="Refugee Growth Over Time")
 current_year_val = trend_data[trend_data['Year'] == selected_year]
 fig_line.add_scatter(x=current_year_val['Year'], y=current_year_val['Refugees'], 
-                     mode='markers', name='Selected Year', marker=dict(color='yellow', size=12))
+                     mode='markers', name='Selected Year', marker=dict(color='#fbbf24', size=15))
 st.plotly_chart(style_graph(fig_line), use_container_width=True)
 st.divider()
 
