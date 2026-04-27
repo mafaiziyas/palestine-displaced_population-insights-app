@@ -2,65 +2,42 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# Configuration must be the first Streamlit command
 st.set_page_config(page_title="UNHCR Palestine Dashboard", layout="wide")
 
-# Global UI Customization: Contrast, Shadows, and Prominent Headings
+# Back ground UI change 
 st.markdown("""
     <style>
-    /* Main app background */
+    /* Changing the main background color */
     .stApp {
         background-color: #f5f7f9;
     }
     
-    /* Elevated Sidebar effect */
+    /* Styling the sidebar background */
     [data-testid="stSidebar"] {
         background-color: #ffffff;
-        box-shadow: 2px 0px 10px rgba(0,0,0,0.05);
+        border-right: 1px solid #e0e0e0;
     }
     
-    /* Prominent Heading Typography */
-    h1 {
-        color: #0e2133; 
-        font-size: 42px !important;
-        font-weight: 800 !important;
-        margin-bottom: 20px !important;
+    /* Title styling' */
+    h1, h2, h3 {
+        color: #1a365d; /* Dark Blue */
+        font-family: 'Helvetica Neue', sans-serif;
     }
-    h2, h3 {
-        color: #1a365d; 
-        font-size: 28px !important;
-        font-weight: 700 !important;
-    }
+    </style>
+    """, unsafe_allow_html=True)
 
-    /* Floating Metric Card Styling */
-    [data-testid="stMetricValue"] { 
-        font-size: 32px !important; 
-        color: #1e4620 !important; 
-        font-weight: 700 !important;
-    }
-    
-    /* Label color fix for metrics */
-    [data-testid="stMetricLabel"] {
-        color: #334155 !important;
-        font-size: 16px !important;
-        font-weight: 600 !important;
-    }
-
-    /* Neumorphic "Pop-out" effect for boxes */
-    .stMetric {
-        background-color: #ffffff !important;
-        padding: 20px !important;
-        border-radius: 15px !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
-        border: none !important;
-    }
+#UI
+st.markdown("""
+    <style>
+    [data-testid="stMetricValue"] { font-size: 26px; color: #2e7d32; }
+    .stMetric { background-color: #f8f9fa; padding: 15px; border-radius: 10px; border: 1px solid #e0e0e0; }
     </style>
     """, unsafe_allow_html=True)
 
 # Title of the app
 st.title("Palestine Displacement Data Dashboard (1976-2025)")
 
-# Collapsible Information Section
+#UI
 with st.expander("ℹ️ Data Methodology & Definitions"):
     st.write("""
     This dashboard visualizes trends for displaced populations originating from the State of Palestine.
@@ -76,9 +53,9 @@ df = pd.read_csv(url)
 # Sidebar filter for Year
 year_list = sorted(df['Year'].unique(), reverse=True)
 selected_year = st.sidebar.selectbox("Select a Year", year_list)
+# Filter the data based on the selection
 filtered_df = df[df['Year'] == selected_year]
-
-# Additional functional requirement: download button
+#Additional functional requirement: download button
 st.sidebar.divider()
 st.sidebar.subheader("Export Data")
 st.sidebar.download_button(
@@ -88,7 +65,7 @@ st.sidebar.download_button(
     mime="text/csv",
 )
 
-# Top metrics
+#Top metrics
 df.columns = df.columns.str.strip()
 st.markdown(f"### Key Figures for {selected_year}")
 col1, col2, col3 = st.columns(3)
@@ -97,18 +74,19 @@ col2.metric("Asylum Seekers", f"{filtered_df['Asylum seekers'].sum():,}")
 col3.metric("Stateless Persons", f"{filtered_df['Stateless Persons'].sum():,}")
 st.divider()
 
-# Trend line 
+#Trend line 
 st.subheader("Historical Displacement Trend (1976-2025)")
 trend_data = df.groupby('Year')['Refugees'].sum().reset_index()
 fig_line = px.line(trend_data, x='Year', y='Refugees', markers=True, title="Refugee Growth Over Time")
+# Highlighting selected year with a yellow dot
 current_year_val = trend_data[trend_data['Year'] == selected_year]
 fig_line.add_scatter(x=current_year_val['Year'], y=current_year_val['Refugees'], 
-                     mode='markers', name='Selected Year', marker=dict(color='orange', size=12))
+                     mode='markers', name='Selected Year', marker=dict(color='yellow', size=12))
 
 st.plotly_chart(fig_line, use_container_width=True)
 st.divider()
 
-# Choropleth
+#choropleth
 st.subheader(f"Global Distribution of Refugees in {selected_year}")
 fig_map = px.choropleth(
     filtered_df, 
@@ -120,17 +98,19 @@ fig_map = px.choropleth(
         "Refugees": ":,",                 
         "Asylum seekers": ":,"          
     },
+    #Green: make high values dark green and low values lighter/white
     color_continuous_scale="Greens", 
     projection="natural earth",
     title=f"Refugee Density ({selected_year})"
 )
+# Customizing the hover label for clarity
 fig_map.update_traces(
     hovertemplate="<b>%{hovertext}</b><br>Refugees: %{z:,.0f}"
 )
 st.plotly_chart(fig_map, use_container_width=True)
 st.divider()
 
-# Bar chart
+#Bar chart
 st.subheader(f"Breakdown of Population Types by Country ({selected_year})")
 top_5_countries = filtered_df.nlargest(5, 'Refugees')
 fig_grouped = px.bar(
@@ -150,7 +130,7 @@ search_country = st.selectbox("Select a country to view its specific records:",
 
 if search_country:
     country_data = filtered_df[filtered_df['Country of Asylum Name'] == search_country]
-    # Blue Informational banner for result clarity
+    #UI update
     st.info(f"Summary for **{search_country}** in {selected_year}")
     
     sc1, sc2, sc3 = st.columns(3)
@@ -176,6 +156,7 @@ fig_pie = px.pie(
     hole=0.4,
     color_discrete_sequence=px.colors.sequential.RdBu 
 )
+#Adding lables and % for clarity
 fig_pie.update_traces(textposition='inside', textinfo='percent+label')
 st.plotly_chart(fig_pie, use_container_width=True)
 st.divider()
