@@ -7,46 +7,44 @@ st.markdown("""
     <style>
     /* Main Area Background: Medium Grey */
     .stApp {
-        background-color: #475569; 
+        background-color: #475569; /* Slate grey */
         font-family: 'Inter', sans-serif;
     }
     
     /* Sidebar: Medium Greyish Blue */
     [data-testid="stSidebar"] {
-        background-color: #334155 !important; 
+        background-color: #334155 !important; /* Deeper slate blue */
         border-right: 1px solid rgba(255,255,255,0.1);
     }
     
-    /* KEEPING: Sidebar text/labels white */
+    /* Force sidebar text and labels to be white/light for readability */
     [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, 
     [data-testid="stSidebar"] h3, [data-testid="stSidebar"] p,
     [data-testid="stSidebar"] label, [data-testid="stSidebar"] .stMarkdown {
         color: #f8fafc !important;
     }
 
-    /* UPDATED: Glassmorphism Container (Semi-transparent navy) */
+    /* Container Styling (Metrics and Charts) */
     div[data-testid="stMetric"], .element-container:has(iframe) {
-        background-color: rgba(30, 41, 59, 0.7) !important; /* Semi-transparent */
+        background-color: #1e293b !important; 
         padding: 20px !important;
-        border-radius: 24px !important; /* Softer corners */
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2) !important;
-        backdrop-filter: blur(8px); /* Blurs background behind the box */
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        margin-bottom: 25px;
+        border-radius: 20px !important;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        border: 1px solid rgba(255,255,255,0.05);
+        margin-bottom: 20px;
     }
 
     /* Metric text colors */
     [data-testid="stMetricValue"] { 
         color: #10b981 !important; 
         font-weight: 800 !important;
-        text-shadow: 0px 0px 10px rgba(16, 185, 129, 0.2);
     }
     [data-testid="stMetricLabel"] {
         color: #cbd5e1 !important;
         font-weight: 600 !important;
     }
 
-    /* Main Title and Subheaders: White */
+    /* Main Title and Subheaders: White for contrast against medium grey */
     h1, h2, h3 {
         color: #ffffff !important;
         font-weight: 800 !important;
@@ -65,11 +63,10 @@ def apply_theme(fig):
         legend_font_color="#f8fafc",
         legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5)
     )
-    # Softer grid lines to match the glass look
-    fig.update_xaxes(gridcolor='rgba(255,255,255,0.05)', zeroline=False)
-    fig.update_yaxes(gridcolor='rgba(255,255,255,0.05)', zeroline=False)
+    fig.update_xaxes(gridcolor='#334155', zeroline=False)
+    fig.update_yaxes(gridcolor='#334155', zeroline=False)
     return fig
-
+    
 # Title of the app
 st.title("Palestine Displacement Data Dashboard (1976-2025)")
 
