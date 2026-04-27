@@ -16,6 +16,7 @@ selected_year = st.sidebar.selectbox("Select a Year", year_list)
 filtered_df = df[df['Year'] == selected_year]
 
 #Top metrics
+df.columns = df.columns.str.strip()
 st.markdown(f"### Key Figures for {selected_year}")
 col1, col2, col3 = st.columns(3)
 col1.metric("Total Refugees", f"{filtered_df['Refugees'].sum():,}")
@@ -28,38 +29,35 @@ st.subheader(f"Top 10 Countries of Asylum in {selected_year}")
 top_10 = filtered_df.nlargest(10, 'Refugees')
 fig = px.bar(top_10, x='Country of Asylum Name', y='Refugees', color='Refugees')
 st.plotly_chart(fig)
+st.divider()
+
+#Trend line 
+st.subheader("Historical Displacement Trend (1976-2025)")
+trend_data = df.groupby('Year')['Refugees'].sum().reset_index()
+fig_line = px.line(trend_data, x='Year', y='Refugees', markers=True, title="Refugee Growth Over Time")
+
+# Highlighting selected year with a yellow dot
+current_year_val = trend_data[trend_data['Year'] == selected_year]
+fig_line.add_scatter(x=current_year_val['Year'], y=current_year_val['Refugees'], 
+                     mode='markers', name='Selected Year', marker=dict(color='yellow', size=12))
+
+st.plotly_chart(fig_line, use_container_width=True)
 
 st.divider()
 
-#Trend and Distribution
-left_col, right_col = st.columns(2)
-
-with left_col:
-    # Historical Trend Line
-    st.subheader("Displacement Trend (1976-2025)")
-    trend_data = df.groupby('Year')['Refugees'].sum().reset_index()
-    fig_line = px.line(trend_data, x='Year', y='Refugees', markers=True)
-    # Highlighting the selected year on the line
-    current_year_val = trend_data[trend_data['Year'] == selected_year]
-    fig_line.add_scatter(x=current_year_val['Year'], y=current_year_val['Refugees'], 
-                         mode='markers', name='Selected Year', marker=dict(color='yellow', size=12))
-    st.plotly_chart(fig_line, use_container_width=True)
-
-with right_col:
-    # Population Breakdown Pie Chart
-    st.subheader("Population Type Breakdown")
-    pie_data = {
-        'Category': ['Refugees', 'Asylum Seekers', 'Stateless', 'IDPs'],
-        'Count': [
-            filtered_df['Refugees'].sum(),
-            filtered_df['Asylum seekers'].sum(),
-            filtered_df['Stateless Persons'].sum(),
-            filtered_df['Internally displaced persons'].sum()
-        ]
-    }
-    fig_pie = px.pie(pie_data, values='Count', names='Category', hole=0.4)
-    st.plotly_chart(fig_pie, use_container_width=True)
+#Pie chart
+st.subheader(f"Population Type Breakdown ({selected_year})")
+pie_data = {
+    'Category': ['Refugees', 'Asylum Seekers', 'Stateless', 'IDPs'],
+    'Count': [
+        filtered_df['Refugees'].sum(),
+        filtered_df['Asylum seekers'].sum(),
+        filtered_df['Stateless Persons'].sum(),
+        filtered_df['Internally displaced persons'].sum()
+    ]
+}
+fig_pie = px.pie(pie_data, values='Count', names='Category', hole=0.4)
+st.plotly_chart(fig_pie, use_container_width=True)
 
 st.caption("Data Source: UNHCR Population Statistics Database")
-
 
