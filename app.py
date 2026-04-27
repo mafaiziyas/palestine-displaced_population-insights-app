@@ -38,22 +38,25 @@ st.divider()
 
 #choropleth
 st.subheader(f"Global Distribution of Refugees in {selected_year}")
-
 fig_map = px.choropleth(
     filtered_df, 
     locations="Country of Asylum Code", 
     color="Refugees", 
-    hover_name="Country of Asylum Name", #name to appear upon hovering
+    hover_name="Country of Asylum Name", 
     hover_data={
         "Country of Asylum Code": False, 
         "Refugees": ":,",               
         "Asylum seekers": ":,"          
     },
-    color_continuous_scale="RdBu_r",# Red for high, blue for low
+    #Green: make high values dark green and low values lighter/white
+    color_continuous_scale="Greens", 
     projection="natural earth",
-    title=f"Refugee Hotspots ({selected_year})"
+    title=f"Refugee Density ({selected_year})"
 )
-fig_map.update_traces(hovertemplate="<b>%{hovertext}</b><br>Refugees: %{z:,.0f}")
+# Customizing the hover label for clarity
+fig_map.update_traces(
+    hovertemplate="<b>%{hovertext}</b><br>Refugees: %{z:,.0f}"
+)
 st.plotly_chart(fig_map, use_container_width=True)
 st.divider()
 
