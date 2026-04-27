@@ -24,25 +24,44 @@ col2.metric("Asylum Seekers", f"{filtered_df['Asylum seekers'].sum():,}")
 col3.metric("Stateless Persons", f"{filtered_df['Stateless Persons'].sum():,}")
 st.divider()
 
-#Top 10 Countries of Asylum Bar chart
-st.subheader(f"Top 10 Countries of Asylum in {selected_year}")
-top_10 = filtered_df.nlargest(10, 'Refugees')
-fig = px.bar(top_10, x='Country of Asylum Name', y='Refugees', color='Refugees')
-st.plotly_chart(fig)
-st.divider()
-
 #Trend line 
 st.subheader("Historical Displacement Trend (1976-2025)")
 trend_data = df.groupby('Year')['Refugees'].sum().reset_index()
 fig_line = px.line(trend_data, x='Year', y='Refugees', markers=True, title="Refugee Growth Over Time")
-
 # Highlighting selected year with a yellow dot
 current_year_val = trend_data[trend_data['Year'] == selected_year]
 fig_line.add_scatter(x=current_year_val['Year'], y=current_year_val['Refugees'], 
                      mode='markers', name='Selected Year', marker=dict(color='yellow', size=12))
 
 st.plotly_chart(fig_line, use_container_width=True)
+st.divider()
 
+#choropleth
+st.subheader(f"Global Distribution of Refugees in {selected_year}")
+fig_map = px.choropleth(
+    filtered_df, 
+    locations="Country of Asylum Code", 
+    color="Refugees", 
+    hover_name="Country of Asylum Name",
+    color_continuous_scale="Reds",
+    projection="natural earth",
+    title=f"Worldwide Refugee Distribution ({selected_year})"
+)
+st.plotly_chart(fig_map, use_container_width=True)
+st.divider()
+
+#Bar chart
+st.subheader(f"Breakdown of Population Types by Country ({selected_year})")
+top_5_countries = filtered_df.nlargest(5, 'Refugees')
+fig_grouped = px.bar(
+    top_5_countries, 
+    x='Country of Asylum Name', 
+    y=['Refugees', 'Asylum seekers', 'Others of concern to UNHCR'],
+    barmode='group',
+    title="Comparison of Legal Statuses in Top Host Countries",
+    labels={'value': 'Number of People', 'variable': 'Status'}
+)
+st.plotly_chart(fig_grouped, use_container_width=True)
 st.divider()
 
 #Pie chart
