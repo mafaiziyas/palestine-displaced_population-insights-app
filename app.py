@@ -3,21 +3,23 @@ import pandas as pd
 import plotly.express as px
 
 # Custom CSS for UI Enhancement
+# 1. UPDATED CSS: Removed background from .stPlotlyChart to stop the "floating" effect
+# and added styling to the container instead.
 st.markdown("""
     <style>
-    /* Background and global font */
     .stApp {
         background-color: #f1f5f9;
         font-family: 'Inter', sans-serif;
     }
     
-    /* Card Styling for Metrics and Charts */
-    div[data-testid="stMetric"], .stPlotlyChart {
+    /* Target the container for both metrics and charts */
+    div[data-testid="stMetric"], .element-container:has(iframe) {
         background-color: #1e293b !important; 
         padding: 20px !important;
         border-radius: 20px !important;
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         border: 1px solid rgba(255,255,255,0.05);
+        margin-bottom: 20px;
     }
 
     /* Metric text colors */
@@ -32,13 +34,11 @@ st.markdown("""
         font-size: 16px !important;
     }
 
-    /* Headers */
     h1, h2, h3 {
         color: #0f172a !important;
         font-weight: 800 !important;
     }
 
-    /* Sidebar adjustments */
     [data-testid="stSidebar"] {
         background-color: #ffffff;
         border-right: 1px solid #e2e8f0;
@@ -52,9 +52,10 @@ def apply_theme(fig):
         paper_bgcolor='rgba(0,0,0,0)', 
         plot_bgcolor='rgba(0,0,0,0)',
         font_color="#f8fafc",
-        margin=dict(l=15, r=15, t=50, b=15),
+        margin=dict(l=40, r=40, t=60, b=80), 
         title_font_color="#f8fafc",
-        legend_font_color="#f8fafc"
+        legend_font_color="#f8fafc",
+        legend=dict(orientation="h", yanchor="bottom", y=-0.5, xanchor="center", x=0.5)
     )
     fig.update_xaxes(gridcolor='#334155', zeroline=False)
     fig.update_yaxes(gridcolor='#334155', zeroline=False)
