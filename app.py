@@ -3,21 +3,33 @@ import pandas as pd
 import plotly.express as px
 
 # Custom CSS for UI Enhancement
-# 1. UPDATED CSS: Removed background from .stPlotlyChart to stop the "floating" effect
-# and added styling to the container instead.
 st.markdown("""
     <style>
+    /* Main Area Background: Medium Grey */
     .stApp {
-        background-color: #f1f5f9;
+        background-color: #475569; /* Slate grey */
         font-family: 'Inter', sans-serif;
     }
     
-    /* Target the container for both metrics and charts */
+    /* Sidebar: Medium Greyish Blue */
+    [data-testid="stSidebar"] {
+        background-color: #334155 !important; /* Deeper slate blue */
+        border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* Force sidebar text and labels to be white/light for readability */
+    [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, 
+    [data-testid="stSidebar"] h3, [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] label, [data-testid="stSidebar"] .stMarkdown {
+        color: #f8fafc !important;
+    }
+
+    /* Container Styling (Metrics and Charts) */
     div[data-testid="stMetric"], .element-container:has(iframe) {
         background-color: #1e293b !important; 
         padding: 20px !important;
         border-radius: 20px !important;
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
         border: 1px solid rgba(255,255,255,0.05);
         margin-bottom: 20px;
     }
@@ -26,22 +38,16 @@ st.markdown("""
     [data-testid="stMetricValue"] { 
         color: #10b981 !important; 
         font-weight: 800 !important;
-        font-size: 32px !important;
     }
     [data-testid="stMetricLabel"] {
-        color: #94a3b8 !important;
+        color: #cbd5e1 !important;
         font-weight: 600 !important;
-        font-size: 16px !important;
     }
 
+    /* Main Title and Subheaders: White for contrast against medium grey */
     h1, h2, h3 {
-        color: #0f172a !important;
+        color: #ffffff !important;
         font-weight: 800 !important;
-    }
-
-    [data-testid="stSidebar"] {
-        background-color: #ffffff;
-        border-right: 1px solid #e2e8f0;
     }
     </style>
     """, unsafe_allow_html=True)
