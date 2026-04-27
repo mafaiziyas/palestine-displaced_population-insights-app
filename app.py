@@ -72,7 +72,18 @@ fig_grouped = px.bar(
     labels={'value': 'Number of People', 'variable': 'Status'}
 )
 st.plotly_chart(fig_grouped, use_container_width=True)
-st.divider()
+st.subheader("Search Specific Country Data")
+search_country = st.selectbox("Select a country to view its specific records:", 
+                             options=[""] + sorted(filtered_df['Country of Asylum Name'].unique().tolist()))
+
+if search_country:
+    country_data = filtered_df[filtered_df['Country of Asylum Name'] == search_country]
+    st.write(f"In {selected_year}, **{search_country}** hosted:")
+    c1, c2, c3 = st.columns(3)
+    c1.write(f"**Refugees:** {int(country_data['Refugees'].sum()):,}")
+    c2.write(f"**Asylum Seekers:** {int(country_data['Asylum seekers'].sum()):,}")
+    c3.write(f"**Others of Concern:** {int(country_data['Others of concern to UNHCR'].sum()):,}")
+  st.divider()
 
 # Pie chart
 st.subheader(f"Population Type Breakdown ({selected_year})")
