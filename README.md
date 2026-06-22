@@ -1,6 +1,6 @@
 # Palestine Displaced Population Insights Dashboard
 
-This project develops an interactive **Streamlit dashboard** designed to analyze over **70 years of data** regarding displaced and stateless populations from Palestine. Developed as part of a **University of Westminster module**, the dashboard transforms complex historical datasets into accessible, actionable insights for policymakers, researchers, and humanitarian organizations to support informed decision-making.
+This project develops an interactive **Streamlit dashboard** designed to analyze over **70 years of data** regarding displaced and stateless populations from Palestine. Built using data from the UNHCR Population Statistics Database, this dashboard analyzes over 70 years of Palestinian displacement trends, transforming complex humanitarian data into accessible insights for researchers, policymakers, and aid organizations to support informed decision-making.
 
 ---
 
