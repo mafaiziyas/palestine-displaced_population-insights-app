@@ -2,6 +2,11 @@
 
 This project develops an interactive **Streamlit dashboard** designed to analyze over **70 years of data** regarding displaced and stateless populations from Palestine. Built using data from the UNHCR Population Statistics Database, this dashboard analyzes over 70 years of Palestinian displacement trends, transforming complex humanitarian data into accessible insights for researchers, policymakers, and aid organizations to support informed decision-making.
 
+## 🔗 Access the Dashboard
+
+**Live Application:**  
+👉 [Palestine Displaced Population Insights Dashboard](https://mafaiziyas-palestine-displacedpopulation-insights-app.streamlit.app/#search-specific-country-data)
+
 ---
 
 ## 📊 Key EDA Findings
@@ -12,11 +17,6 @@ The current displaced population is predominantly comprised of:
 - **Refugees:** 70.8%
 - **Asylum Seekers:** 24.8%
 - **Others of Concern:** 4.4%
-
-## 🔗 Access the Dashboard
-
-**Live Application:**  
-👉 [Palestine Displaced Population Insights Dashboard](https://mafaiziyas-palestine-displacedpopulation-insights-app.streamlit.app/#search-specific-country-data)
 
 ---
 
