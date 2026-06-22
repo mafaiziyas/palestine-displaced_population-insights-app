@@ -1,23 +1,70 @@
-palestine-displaced_population-insights-app
+# Palestine Displaced Population Insights Dashboard
 
-This project develops an interactive Streamlit dashboard designed to analyze over 70 years of data regarding displaced and stateless populations from Palestine. Developed as part of a University of Westminster module, this tool serves to transform complex historical datasets into accessible, actionable insights for policymakers, researchers, and humanitarian experts to facilitate informed, sustainable decision-making.
+This project develops an interactive **Streamlit dashboard** designed to analyze over **70 years of data** regarding displaced and stateless populations from Palestine. Developed as part of a **University of Westminster module**, the dashboard transforms complex historical datasets into accessible, actionable insights for policymakers, researchers, and humanitarian organizations to support informed decision-making.
 
-📊 Key EDA Findings
+---
 
-Based on the historical and demographic data processed by the application:
-Population Demographics (2025): The current displaced population is predominantly comprised of Refugees (70.8%), followed by Asylum Seekers (24.8%) and a smaller segment of Others of Concern (4.4%).
-Long-Term Displacement Trends: A longitudinal analysis from 1976 to 2025 reveals significant volatility in displacement numbers. A distinct, sharp surge in the refugee population was observed during the early 2000s, followed by shifts in subsequent years.
-Geographic Distribution: Global mapping highlights varying levels of refugee density. As of 2025, specific regions, such as Greece, have been identified as primary host nations with significant refugee populations (e.g., 11,697 individuals).
-Host Country Legal Status Comparison: Comparative data across top host nations (including Greece, Belgium, and Iraq) illustrates distinct variations in the breakdown of legal statuses among displaced populations, providing clarity on how different countries manage refugee and asylum-seeking inflows.
-Granular Data Exploration: The dashboard enables targeted analysis through interactive filtering, allowing users to query specific host countries for any given year to view precise demographic records.
+## 📊 Key EDA Findings
 
-🚀 Features
-Interactive Filtering: Select any year from the historical dataset to update all visualizations dynamically.
-Comparative Analytics: View side-by-side breakdowns of population types across different countries.
-Global Visualization: Integrated map views to identify key displacement hotspots.
-Data Export: Easily download processed data for further external analysis.
+### Population Demographics (2025)
+The current displaced population is predominantly comprised of:
 
-🔗 Access the Dashboard
-You can interact with the live application here:
-[Palestine Displaced Population Insights Dashboard](https://mafaiziyas-palestine-displacedpopulation-insights-app.streamlit.app/#search-specific-country-data)
-Data Source: UNHCR Population Statistics Database 
+- **Refugees:** 70.8%
+- **Asylum Seekers:** 24.8%
+- **Others of Concern:** 4.4%
+
+## 🔗 Access the Dashboard
+
+**Live Application:**  
+👉 [Palestine Displaced Population Insights Dashboard](https://mafaiziyas-palestine-displacedpopulation-insights-app.streamlit.app/#search-specific-country-data)
+
+---
+
+### Long-Term Displacement Trends
+A longitudinal analysis from **1976–2025** reveals significant fluctuations in displacement numbers. A notable surge in the refugee population occurred during the **early 2000s**, followed by shifts in subsequent years.
+
+### Geographic Distribution
+Global mapping highlights variations in refugee density across host nations. As of **2025**, countries such as **Greece** have been identified as key host locations, accommodating significant refugee populations.
+
+### Host Country Legal Status Comparison
+Comparative analysis across major host nations, including **Greece, Belgium, and Iraq**, reveals differences in the distribution of:
+
+- Refugees
+- Asylum Seekers
+- Others of Concern
+
+This provides insight into how different countries manage displaced populations.
+
+### Granular Data Exploration
+The dashboard supports detailed analysis through interactive filtering, enabling users to:
+
+- Select specific years
+- Query individual host countries
+- View detailed demographic records
+
+---
+
+## 🚀 Features
+
+- **Interactive Filtering** – Select any year from the historical dataset to dynamically update all visualizations.
+- **Comparative Analytics** – Compare population categories across multiple host countries.
+- **Global Visualization** – Explore displacement patterns through integrated map views.
+- **Data Export** – Download processed datasets for further analysis.
+
+---
+
+## 🛠️ Tech stack
+
+- **Python**
+- **Streamlit**
+- **Pandas**
+- **Plotly**
+
+---
+
+## 📂 Data Source
+
+**UNHCR Population Statistics Database**  
+https://www.unhcr.org/refugee-statistics/
+
+---
