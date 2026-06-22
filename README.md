@@ -20,4 +20,4 @@ Data Export: Easily download processed data for further external analysis.
 🔗 Access the Dashboard
 You can interact with the live application here:
 [Palestine Displaced Population Insights Dashboard](https://mafaiziyas-palestine-displacedpopulation-insights-app.streamlit.app/#search-specific-country-data)
-Data Source: UNHCR Population Statistics Database
+Data Source: UNHCR Population Statistics Database 
